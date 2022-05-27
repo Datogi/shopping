@@ -32,6 +32,7 @@ function App() {
             allProducts={fullArr}
             setProducts={setProducts}
             wishList={wishList}
+            setWishList={setWishList}
           />
           <Description
             wishList={wishList}

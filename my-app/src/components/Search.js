@@ -1,3 +1,5 @@
+import Likes from "./Likes";
+
 export default function Search(wishList) {
   return (
     <div className="flex justify-between">
@@ -12,26 +14,13 @@ export default function Search(wishList) {
       <div>
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          className="h-10 w-10 mr-3 "
+          className="h-10 w-10 mr-3 absolute top-0 right-0 "
           onClick={() => {
-            console.log(wishList.wishList);
-            wishList.wishList.map((el) => {
-              document.querySelector(
-                ".wish"
-              ).innerHTML = ` <div className="flex">
-            <img
-              className="h-10 w-10 rounded-full "
-              src=${el.image}
-            />
-            <div>
-              <h1>${el.title}m</h1>
-              <p className="font-extralight ">${el.description}</p>
-            </div>
-          </div>`;
-            });
+            document.querySelector(".wish").classList.contains("hidden")
+              ? document.querySelector(".wish").classList.remove("hidden")
+              : document.querySelector(".wish").classList.add("hidden");
           }}
           viewBox="0 0 20 20"
-          fill="currentColor"
         >
           <path
             fillRule="evenodd"
@@ -39,7 +28,12 @@ export default function Search(wishList) {
             clipRule="evenodd"
           />
         </svg>
-        <div className="border-2 border-black wish"></div>
+
+        <div className="border-2  hidden wish absolute top-10 right-2 z-50 bg-white">
+          {wishList?.wishList?.map((el) => {
+            return <Likes el={el} />;
+          })}
+        </div>
       </div>
     </div>
   );

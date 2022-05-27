@@ -40,6 +40,7 @@ export default function Sort({
   allProducts,
   setSelected,
   wishList,
+  setWishList,
 }) {
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(true);
 
