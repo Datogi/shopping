@@ -1,6 +1,8 @@
+import { useState } from "react";
 import Likes from "./Likes";
 
 export default function Search(wishList) {
+  const [favourites, setFavourites] = useState(false);
   return (
     <div className="flex justify-between">
       <div class="flex relative w-8 h-8 ml-2 justify-center items-center m-1 mr-2 text-xl rounded-full text-white">
@@ -16,9 +18,8 @@ export default function Search(wishList) {
           xmlns="http://www.w3.org/2000/svg"
           className="h-10 w-10 mr-3 absolute top-0 right-0 "
           onClick={() => {
-            document.querySelector(".wish").classList.contains("hidden")
-              ? document.querySelector(".wish").classList.remove("hidden")
-              : document.querySelector(".wish").classList.add("hidden");
+            setFavourites(!favourites);
+            console.log(favourites);
           }}
           viewBox="0 0 20 20"
         >
@@ -29,11 +30,13 @@ export default function Search(wishList) {
           />
         </svg>
 
-        <div className="border-2  hidden wish absolute top-10 right-2 z-50 bg-white">
-          {wishList?.wishList?.map((el) => {
-            return <Likes el={el} />;
-          })}
-        </div>
+        {favourites && (
+          <div className="border-2   wish absolute top-10 right-2 z-50 bg-white">
+            {wishList?.wishList?.map((el) => {
+              return <Likes el={el} />;
+            })}
+          </div>
+        )}
       </div>
     </div>
   );
